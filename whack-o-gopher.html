@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)http://rescuethepresent.net/webdevelopment/ten-seconds-click-shapes.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    
+        <title>Whack-o-Gopher</title>
+        
+        <style type="text/css">
+            
+            body {
+                
+                
+                font-family: sans-serif;
+            }
+        
+            #shape {
+                
+                width: 200px;
+                height: 200px;
+                display: none;
+                position: absolute;
+                z-index: 2;
+                
+                
+            }
+            
+            .bold {
+                
+                font-weight: bold;
+                color: red;
+                position: relative;
+                top: 500px;
+            }
+            
+            
+            .text {
+                
+                position: relative;
+                top: 500px;
+                
+                
+            }
+            
+            #holes {
+                
+                position: absolute;
+                z-index: 1;
+                  
+            }
+            
+            #restart {
+                
+                padding: 10px 19px;
+             font-size: 17px;
+  line-height: 1.471;
+  border-radius: 6px;
+  border: none;
+  width: 15%;
+  position: relative;
+  top: 550px;   
+                color: #ffffff;
+    background-color: red;
+                
+            }
+            
+        
+        </style>
+    
+    
+    </head>
+    
+    
+    <body>
+        
+        <div id="holes"><img src="http://durdygirdy.net/webdev/holes.png"></div>
+        
+        <div id="shape"></div>
+        
+        <h1 class="text">How many times can you whack the gopher in ten seconds?</h1>
+        
+        <p class="text">Click on the gopher as quickly as you can!</p>
+        
+        <p class="bold">Number of whacks = <span id="clicks"></span></p>
+        
+         <button id="restart" onclick="history.go(0)" VALUE="Refresh">Restart</button>
+        
+        <script type="text/javascript">
+            
+            // this is what counts the clicks//
+            var clicks = 0;
+                
+                        function onClick() {
+                            
+                            clicks += 1;
+                            
+                            document.getElementById("clicks").innerHTML = clicks;
+                            
+                        };
+            
+            var startTime = new Date().getTime();
+            
+            var interval = setInterval(function(){
+                
+                // length of game//
+                
+                if(new Date().getTime() - startTime > 10000){
+                    
+                    clearInterval(interval);
+                    
+                    return;
+                }
+                
+          
+            
+                    function makeShapeAppear() {
+                        
+                        // this is the left and vertical positions of the holes//
+
+                    var left = [87, 316, 545, 87, 316, 545];
+                
+                    var topper = [56, 56, 56, 285, 285, 285];
+                
+                
+                
+                
+                var randomHole = Math.random();
+                        
+                        // change to 7 when I have 6 variables or holes //
+            
+                        randomHole = randomHole * 5;
+
+                        randomHole = Math.floor(randomHole);
+                
+                var width = (Math.random() * 200) + 100;
+                
+               document.getElementById("shape").innerHTML = "<img src='http://www.durdygirdy.net/webdev/gopher.png'>"
+                
+                document.getElementById("shape").style.top = topper[randomHole] + "px";
+                
+                document.getElementById("shape").style.left = left[randomHole] + "px";
+                
+                document.getElementById("shape").style.display = "block";
+
+
+                }
+                
+                    makeShapeAppear();
+                
+                        document.getElementById("shape").onclick = function () {
+
+                        document.getElementById("shape").style.display = "none";
+                            
+                        onClick();
+                    
+
+                    }
+            
+                        // length for gopher to appear/
+            }, Math.random() * 2000);  
+            
+         
+
+
+       
+
+            
+           
+        </script>
+        
+        
+    
+    
+    
+
+</body></html>
